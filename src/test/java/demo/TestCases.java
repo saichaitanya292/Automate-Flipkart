@@ -50,7 +50,7 @@ public class TestCases {
     By product = By.xpath("//span[@class='Y1HWO0']");
     WebElement product_element = wait.until(ExpectedConditions.visibilityOfElementLocated(product));
     List<WebElement> ratings = driver.findElements(product);
-    int count = 0;
+    int count = 1;
     for(WebElement rating:ratings)
     {
         if(Float.parseFloat(rating.getText()) <= 4)
