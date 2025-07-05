@@ -1,0 +1,30 @@
+name: Run TestNG Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Build and Run Tests
+      run: mvn clean test
+
+    - name: Upload Test Reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: testng-reports
+        path: target/surefire-reports/
